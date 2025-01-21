@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Temperature Converter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FF4500A0, #00ff0032);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 320px;
+            transition: all 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.05);
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            font-family: 'Segoe UI', sans-serif;
+            animation: fadeIn 1s ease-in-out;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease-in-out;
+        }
+        input[type="number"]:focus {
+            border-color: #FF6A00;
+            outline: none;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #FF6A00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #FF4500;
+            transform: translateY(-3px);
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes slideIn {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Temperature Converter</h1>
+        <label for="temperature">Enter Temperature:</label>
+        <input type="number" id="temperature" placeholder="Enter value">
+        <div>
+            <button onclick="convertToCelsius()">Convert to Celsius</button>
+            <button onclick="convertToFahrenheit()">Convert to Fahrenheit</button>
+            <button onclick="convertToKelvin()">Convert to Kelvin</button>
+            <button onclick="convertKelvinToFahrenheit()">Kelvin to Fahrenheit</button>
+            <button onclick="convertFahrenheitToKelvin()">Fahrenheit to Kelvin</button>
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function convertToCelsius() {
+            const temp = parseFloat(document.getElementById('temperature').value);
+            if (isNaN(temp)) {
+                document.getElementById('result').innerText = 'Please enter a valid number.';
+                return;
+            }
+            const celsius = ((temp - 32) * 5) / 9;
+            document.getElementById('result').innerText = `${temp}°F is equal to ${celsius.toFixed(2)}°C`;
+        }
+
+        function convertToFahrenheit() {
+            const temp = parseFloat(document.getElementById('temperature').value);
+            if (isNaN(temp)) {
+                document.getElementById('result').innerText = 'Please enter a valid number.';
+                return;
+            }
+            const fahrenheit = (temp * 9) / 5 + 32;
+            document.getElementById('result').innerText = `${temp}°C is equal to ${fahrenheit.toFixed(2)}°F`;
+        }
+
+        function convertToKelvin() {
+            const temp = parseFloat(document.getElementById('temperature').value);
+            if (isNaN(temp)) {
+                document.getElementById('result').innerText = 'Please enter a valid number.';
+                return;
+            }
+            const kelvin = temp + 273.15;
+            document.getElementById('result').innerText = `${temp}°C is equal to ${kelvin.toFixed(2)} K`;
+        }
+
+        function convertKelvinToFahrenheit() {
+            const temp = parseFloat(document.getElementById('temperature').value);
+            if (isNaN(temp)) {
+                document.getElementById('result').innerText = 'Please enter a valid number.';
+                return;
+            }
+            const fahrenheit = (temp - 273.15) * 9 / 5 + 32;
+            document.getElementById('result').innerText = `${temp} K is equal to ${fahrenheit.toFixed(2)}°F`;
+        }
+
+        function convertFahrenheitToKelvin() {
+            const temp = parseFloat(document.getElementById('temperature').value);
+            if (isNaN(temp)) {
+                document.getElementById('result').innerText = 'Please enter a valid number.';
+                return;
+            }
+            const kelvin = ((temp - 32) * 5) / 9 + 273.15;
+            document.getElementById('result').innerText = `${temp}°F is equal to ${kelvin.toFixed(2)} K`;
+        }
+    </script>
+</body>
+</html>
